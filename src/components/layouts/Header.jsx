@@ -2,6 +2,14 @@ import { NavLink } from "react-router-dom"
 import "./style.css"
 
 export const Header = () => {
+    
+    {/* React Router dom isActive property with style using function  */}
+    const getNavLinkStyle = ({isActive}) => {
+        return {
+            color: isActive ? "green" : "#d9d9d9",
+        };
+    }
+
     return (
         <div className="header-dark">
             <nav className="navbar navbar-dark navbar-expand-md navigation-clean-search">
@@ -14,13 +22,18 @@ export const Header = () => {
                         id="navcol-1">
                         <ul className="nav navbar-nav">
                             <li className="nav-item" role="presentation">
-                                <NavLink className="nav-link" to="/">Home</NavLink>
+                                {/* React Router dom isActive property with className  */}
+                                <NavLink className={({isActive}) =>  isActive ? "nav-link active-link" : "nav-link"  } to="/">Home</NavLink>
                             </li>
                             <li className="nav-item" role="presentation">
-                                <NavLink className="nav-link" to="/about">About</NavLink>
+                            {/* React Router dom isActive property with style  */}
+                                <NavLink style={({isActive}) => { return {
+                                    color: isActive ? "red" : "#d9d9d9"
+                                } }} to="/about" className="nav-link">About</NavLink>
                             </li>
                             <li className="nav-item" role="presentation">
-                                <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                                 {/* React Router dom isActive property with style using function  */}
+                                <NavLink className="nav-link" style={getNavLinkStyle} to="/contact">Contact</NavLink>
                             </li>
                             <li className="nav-item" role="presentation">
                                 <NavLink className="nav-link" to="/movie">Movie</NavLink>
